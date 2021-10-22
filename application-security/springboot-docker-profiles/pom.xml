@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.5.5</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.shunyeka.grc</groupId>
+	<artifactId>rest-service</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>rest-service</name>
+	<description>GRC Rest Sample</description>
+	
+	<profiles>
+	  <profile>
+	  	<id>windows-local</id>
+	    <activation>
+	      <os>
+	        <family>Windows</family>
+	      </os>
+	    </activation>
+	    <build>
+        	<plugins>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+				</plugin>
+			</plugins>
+    	</build>
+	  </profile>
+	  <profile>
+	  	<id>default</id>
+	    <activation>
+        	<activeByDefault>true</activeByDefault>
+    	</activation>
+	    <build>
+        	<plugins>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<configuration>
+		        		<jvmArguments>
+		        			-javaagent:/home/ec2-user/.m2/repository/com/trend/app_protect/trend_app_protect/${trend_app_protect.version}/trend_app_protect-${trend_app_protect.version}.jar
+		        		</jvmArguments>
+	        		</configuration>
+				</plugin>
+			</plugins>
+    	</build>
+	  </profile>
+	</profiles>
+	
+	<properties>
+		<java.version>11</java.version>
+		<trend_app_protect.version>4.4.6</trend_app_protect.version>
+	</properties>
+	<repositories>
+	    <repository>
+	        <id>appsec-agent-java.release</id>
+	        <url>https://maven.application.cloudone.trendmicro.com/release</url>
+	    </repository>
+	</repositories>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+	        <groupId>com.trend.app_protect</groupId>
+	        <artifactId>trend_app_protect</artifactId>
+	        <version>${trend_app_protect.version}</version>
+	    </dependency>
+	</dependencies>
+</project>
