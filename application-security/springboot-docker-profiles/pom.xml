@@ -43,7 +43,7 @@
 					<artifactId>spring-boot-maven-plugin</artifactId>
 					<configuration>
 		        		<jvmArguments>
-		        			-javaagent:/home/ec2-user/.m2/repository/com/trend/app_protect/trend_app_protect/${trend_app_protect.version}/trend_app_protect-${trend_app_protect.version}.jar
+		        			-javaagent:${settings.localRepository}/com/trend/app_protect/trend_app_protect/${trend_app_protect.version}/trend_app_protect-${trend_app_protect.version}.jar
 		        		</jvmArguments>
 	        		</configuration>
 				</plugin>
